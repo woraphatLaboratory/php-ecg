@@ -39,6 +39,9 @@
             }]
         },
         options: {
+            animation: {
+                duration: 0
+            },
             plugins: {
                 legend: {
                     display: false
