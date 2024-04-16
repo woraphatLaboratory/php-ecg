@@ -5,7 +5,7 @@ $betweenClaus = 'BETWEEN 0 AND 150' ;
 
 if($_POST['case'] == 'lead1') {
     if($_POST['subCase'] == 'select'){
-        $sql = "SELECT time_id,lead_1 FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 450";
+        $sql = "SELECT time_id,lead_1 FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
         $result = $conn->query($sql);
         $id = array();
         $values = array();
@@ -35,19 +35,34 @@ if($_POST['case'] == 'lead1') {
 }
 
 if($_POST['case'] == 'avr'){
-    $sql = "SELECT time_id,aVR FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['aVR']) ;
+    if($_POST['subCase'] == 'select'){
+        $sql = "SELECT time_id,aVR FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVR']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
+    }else{
+        $sql = "SELECT time_id,aVR FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVR']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
     }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
+    echo json_encode($data);
 }
 
 if($_POST['case'] == 'v1'){
@@ -87,35 +102,65 @@ if($_POST['case'] == 'v4'){
 }
 
 if($_POST['case'] == 'lead2'){
-    $sql = "SELECT time_id,lead_2 FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['lead_2']) ;
+    if($_POST['subCase'] == 'select'){
+        $sql = "SELECT time_id,lead_2 FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['lead_2']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
+    }else{
+        $sql = "SELECT time_id,lead_2 FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['lead_2']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
     }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
+    echo json_encode($data);
 }
 
 if($_POST['case'] == 'avl'){
-    $sql = "SELECT time_id,aVL FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['aVL']) ;
+    if($_POST['subCase'] == 'select'){
+        $sql = "SELECT time_id,aVL FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVL']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
+    }else{
+        $sql = "SELECT time_id,aVL FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVL']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
     }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
+    echo json_encode($data);
 }
 
 if($_POST['case'] == 'v2'){
@@ -151,36 +196,66 @@ if($_POST['case'] == 'v5'){
 }
 
 if($_POST['case'] == 'lead3'){
-    $sql = "SELECT time_id,lead_3 FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['lead_3']) ;
+    if($_POST['subCase'] == 'select'){
+        $sql = "SELECT time_id,lead_3 FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['lead_3']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
+    }else{
+        $sql = "SELECT time_id,lead_3 FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['lead_3']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
     }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
+    echo json_encode($data);
 }
 
 
 if($_POST['case'] == 'avf'){
-    $sql = "SELECT time_id,aVF FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['aVF']) ;
+    if($_POST['subCase'] == 'select'){
+        $sql = "SELECT time_id,aVF FROM data_ecg_6_lead WHERE time_id BETWEEN 0 AND 451";
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVF']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
+    }else{
+        $sql = "SELECT time_id,aVF FROM data_ecg_6_lead WHERE time_id ".$betweenClaus;
+        $result = $conn->query($sql);
+        $id = array();
+        $values = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($id, $row['time_id']);
+            array_push($values, $row['aVF']);
+        }
+        $data = array(
+            "labelloop" => $id,
+            "dataloop" => $values
+        );
     }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
+    echo json_encode($data);
 }
 
 if($_POST['case'] == 'v3'){

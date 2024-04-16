@@ -9,7 +9,8 @@
             url: '/api/getData.php',
             method: 'POST',
             data:{
-                case:'avl'
+                case:'avl',
+                subCase: 'noSelect'
             },
             success: function(data) {
                 let res = JSON.parse(data)
@@ -50,21 +51,21 @@
             },
             scales: {
                 y: {
+                    min: 5000000, // ค่าต่ำสุดของแกน Y
+                    max: 8500000, // ค่าสูงสุดของแกน Y
 
                     ticks: {
-                        display: false
+                        display: false,
+                        stepSize: 1000000
                     },
                     border: {
-                        dash: [2, 4],
+                        // dash: [2, 4],
                     },
-                    // grid: {
-                    //     color: 'white',
-                    //     // drawOnChartArea: false,
-                    //     lineWidth: 0.1,
-                    //     border: {
-                    //         dash: [2, 4],
-                    //     },
-                    // }
+                    grid: {
+                        color: 'white',
+                        // drawOnChartArea: false,
+                        lineWidth: 0.1,
+                    }
                 },
                 x: {
                     // display: false,
@@ -72,13 +73,29 @@
                         display: false
                     },
                     border: {
-                        dash: [2, 4],
+                        // dash: [2, 4],
                     },
-                    // grid: {
-                    //     color: 'white',
-                    //     lineWidth: 0.1,
-                    //
-                    // }
+                    grid: {
+                        color: function(context) {
+                            // console.log(context.tick)
+                            // var min = 58;
+                            var min = 7;
+                            var max = 449;
+                            var step = 17;
+
+                            if (context.tick.value >= min && context.tick.value <= max && (context.tick.value - min) % step === 0) {
+                                return 'white';
+                            } else {
+                                return '';
+                            }
+                            // if ([58, 75, 92, 109, 126, 143, 228, 313, 398].includes(context.tick.value)) {
+                            //     return 'white';
+                            // } else {
+                            //     return '';
+                            // }
+                        },
+                        lineWidth: 0.1,
+                    }
                 }
             }
         }
