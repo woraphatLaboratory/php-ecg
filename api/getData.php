@@ -290,34 +290,11 @@ if($_POST['case'] == 'v6'){
     echo json_encode($data) ;
 }
 
-if($_POST['case'] == 'select'){
-    $sql = "SELECT time_id,aVL FROM data_ecg_6_lead WHERE time_id BETWEEN 1 AND 450";
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,$row['time_id']) ;
-        array_push($values,$row['aVL']) ;
-    }
-    $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
-    );
-    echo json_encode($data) ;
-}
 
 if($_POST['case'] == '11'){
-    $sql = "SELECT time_id,aVL FROM data_ecg_6_lead WHERE time_id BETWEEN 1 AND 450";
-    $result = $conn->query($sql);
-    $id = array() ;
-    $values = array() ;
-    while ($row = mysqli_fetch_assoc($result)){
-        array_push($id,0) ;
-        array_push($values,0) ;
-    }
     $data = array(
-        "labelloop"=>$id,
-        "dataloop"=>$values
+        "labelloop"=>0,
+        "dataloop"=>0
     );
     echo json_encode($data) ;
 }

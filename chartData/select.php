@@ -2,7 +2,23 @@
     <canvas id="myChart13" style="height: 150px;width: 940px"></canvas>
 </div>
 
-<span class="label-text text-light"><?php echo $_POST['case']; ?></span>
+<span class="label-text text-light"><?php
+    $showText = "11" ;
+    $checkText =  $_POST['case'];
+    if($checkText == "lead1"){
+        $showText = "LEAD I" ;
+    }else if($checkText == "lead2"){
+        $showText = "LEAD II" ;
+    }else if($checkText == "lead3"){
+        $showText = "LEAD III" ;
+    }else if($checkText == "avr"){
+        $showText = "aVR" ;
+    }else if($checkText == "avl"){
+        $showText = "aVL" ;
+    }else if($checkText == "avf"){
+        $showText = "aVF" ;
+    }
+    echo $showText ; ?></span>
 <input class="selectData" id="selectData" name="selectData" value="<?php echo $_POST['case']; ?>" hidden >
 <script>
 
@@ -92,7 +108,14 @@
                          grid: {
                              color: 'white',
                              // drawOnChartArea: false,
-                             lineWidth: 0.1,
+                             lineWidth: 0.5,
+                             // lineWidth: function (context){
+                             //     if (context.tick && (context.tick.value === 200000 || context.tick.value === 400000 || context.tick.value === 600000 || context.tick.value === 800000)) {
+                             //         return 0.1;
+                             //     } else {
+                             //         return 0.5;
+                             //     }
+                             // },
                              // border: {
                              //     dash: [2, 4],
                              // },
@@ -108,17 +131,21 @@
                          },
                          grid: {
                              color: function(context) {
-                                 console.log(context.tick)
+                                 // console.log(context.tick)
                                  // var min = 58;
-                                 var min = 7;
-                                 var max = 449;
-                                 var step = 17;
+                                 let min = 7;
+                                 let max = 449;
+                                 // var step = 17;
+                                 let step = 17;
 
                                  if (context.tick.value >= min && context.tick.value <= max && (context.tick.value - min) % step === 0) {
                                      return 'white';
-                                 } else {
+                                 }  else if(context.tick.value === 10 || context.tick.value === 14 || context.tick.value === 17 ||context.tick.value === 20 ){
+                                     return 'white' ;
+                                 }else{
                                      return '';
                                  }
+
                                  // if ([58, 75, 92, 109, 126, 143, 228, 313, 398].includes(context.tick.value)) {
                                  //     return 'white';
                                  // } else {
@@ -127,15 +154,35 @@
 
 
                              },
-                             lineWidth: 0.1,
+                             // lineWidth: 0.2,
+                             // lineWidth: function(context) {
+                             //     if (context.tick.value >= 7 && context.tick.value <= 449 && (context.tick.value - 7) % 17 === 0) {
+                             //         return 0.5 ;
+                             //     }  else if(context.tick.value === 10 || context.tick.value === 14 || context.tick.value === 17 ||context.tick.value === 20 ){
+                             //         return 0.1 ;
+                             //     }else{
+                             //         return 0;
+                             //     }
+                             // },
+
+                             lineWidth: function(context) {
+                                 let min = 7;
+                                 let max = 449;
+                                 // var step = 17;
+                                 let step = 17;
+                                 if (context.tick && context.tick.value >= min && context.tick.value <= max && (context.tick.value - min) % step === 0) {
+                                     return 0.5;
+                                 } else if (context.tick && (context.tick.value === 10 || context.tick.value === 14 || context.tick.value === 17 || context.tick.value === 20)) {
+                                     return 0.1;
+                                 } else {
+                                     return 0;
+                                 }
+                             },
                          }
                      }
                  }
              }
          });
 
-
-
-
-    updateInterval_select = setInterval(updateChart_select, 250);
+    updateInterval_select = setInterval(updateChart_select, 1000);
 </script>

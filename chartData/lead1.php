@@ -16,8 +16,8 @@
                 // ปรับปรุงข้อมูลแผนภูมิ
                 let res = JSON.parse(data)
                 // console.log(res.labelloop)
-                myChart_lead1.data.labels = res.labelloop;
-                myChart_lead1.data.datasets[0].data = res.dataloop;
+                myChart_lead1.data.labels = res.labelloop; // x axis
+                myChart_lead1.data.datasets[0].data = res.dataloop; // y axis
                 myChart_lead1.update();
             },
             error: function(xhr, status, error) {
